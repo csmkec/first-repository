@@ -635,6 +635,123 @@
             color: var(--dark-bg);
         }
 
+        /* Career Section */
+        .career-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(57, 255, 20, 0.2);
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s;
+        }
+
+        .career-card:hover {
+            border-color: var(--neon-green);
+            transform: translateX(10px);
+            box-shadow: 0 5px 30px rgba(57, 255, 20, 0.2);
+        }
+
+        .career-card h3 {
+            color: var(--neon-green);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .career-card h4 {
+            color: var(--text-light);
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.8rem;
+            border-left: 3px solid var(--neon-green);
+            padding-left: 1rem;
+        }
+
+        .career-card ul {
+            list-style: none;
+            padding-left: 0;
+            margin-bottom: 1rem;
+        }
+
+        .career-card li {
+            color: var(--text-dim);
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .career-card li::before {
+            content: '▹';
+            color: var(--neon-green);
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        .career-card p {
+            color: var(--text-dim);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .apply-button {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.8rem 2rem;
+            background: transparent;
+            border: 2px solid var(--neon-green);
+            color: var(--neon-green);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .apply-button:hover {
+            background: var(--neon-green);
+            color: var(--dark-bg);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(57, 255, 20, 0.4);
+        }
+
+        .career-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-item {
+            background: var(--card-bg);
+            border: 1px solid rgba(57, 255, 20, 0.2);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .benefit-item:hover {
+            border-color: var(--neon-green);
+            transform: translateY(-5px);
+        }
+
+        .benefit-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-item h4 {
+            color: var(--neon-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .benefit-item p {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+        }
+
         @media (max-width: 768px) {
             .hero-content h1 { font-size: 2.5rem; }
             .section-title { font-size: 2rem; }
@@ -666,6 +783,7 @@
             <li><a href="#services">Services</a></li>
             <li><a href="#features">Features</a></li>
             <li><a href="#tech">Technology</a></li>
+            <li><a href="#careers">Careers</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
@@ -675,6 +793,9 @@
         <div class="hero-content">
             <h1>Empowering Digital Transformation</h1>
             <p>Next-generation IT solutions that scale with your ambitions. From AI-powered automation to cloud-native architectures, we transform businesses through innovation and excellence.</p>
+            <div style="font-size: 1.5rem; color: var(--neon-green); margin: 2rem 0; letter-spacing: 3px; text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);">
+                Passion • Performance • Partnership • Purpose
+            </div>
             <div class="cta-buttons">
                 <a href="#contact" class="btn btn-primary">Get Started</a>
                 <a href="#services" class="btn btn-secondary">Explore Services</a>
@@ -811,6 +932,111 @@
         </div>
     </section>
 
+    <!-- Careers Section -->
+    <section class="section" id="careers">
+        <h2 class="section-title">Join Our Team</h2>
+        <p class="section-subtitle">Shape the future of IT solutions with innovation, continuous learning, and collaboration</p>
+        
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div class="career-card">
+                <h3>💻 Software Engineer Internship</h3>
+                
+                <h4>About the Role</h4>
+                <p>Contribute to real engineering projects alongside experienced mentors, applying core computer science to design, build, and improve software that scales. Collaborate with product and engineering stakeholders to turn requirements into reliable, maintainable features.</p>
+                
+                <h4>Key Responsibilities</h4>
+                <ul>
+                    <li>Apply sound engineering principles to solve complex problems with clean, testable code</li>
+                    <li>Partner with stakeholders to elicit user requirements and translate them into technical tasks</li>
+                    <li>Manage time effectively and complete software tasks within a collaborative team environment</li>
+                    <li>Stay current with developments that improve availability, reliability, efficiency, observability, and performance</li>
+                    <li>Drive consistency in monitoring and operations at scale</li>
+                </ul>
+                
+                <h4>Requirements</h4>
+                <ul>
+                    <li>Currently pursuing a Bachelor's or Master's in Computer Science, Engineering, or a related field</li>
+                    <li>Demonstrated understanding of CS fundamentals, including data structures and algorithms</li>
+                    <li>Familiarity with version control (Git) and eagerness to learn modern frameworks and tooling</li>
+                    <li>Strong problem-solving skills, attention to detail, and clear communication</li>
+                </ul>
+                
+                <a href="mailto:careers@scalesage.in" class="apply-button">Apply Now →</a>
+            </div>
+
+            <div class="career-card">
+                <h3>📈 Sales and Marketing Internship</h3>
+                
+                <h4>About the Role</h4>
+                <p>Support fast-paced sales and marketing programs at ScaleSage, contributing directly to market research, campaign execution, lead generation, and customer engagement across channels. Gain practical exposure to modern tools, data-driven decision making, and cross-functional collaboration.</p>
+                
+                <h4>Key Responsibilities</h4>
+                <ul>
+                    <li>Market research: Analyze audience segments, trends, and competitors to surface insights and opportunities</li>
+                    <li>Campaign support: Assist in planning and executing digital and offline campaigns with measurable outcomes</li>
+                    <li>Sales enablement: Generate and qualify leads, follow up systematically, and maintain up-to-date CRM records</li>
+                    <li>Customer outreach: Engage prospects via social, email, and phone to nurture interest and drive conversions</li>
+                    <li>Performance tracking: Monitor KPIs, compile weekly reports, and recommend optimizations</li>
+                    <li>Product presentation: Understand use cases and communicate value propositions clearly</li>
+                </ul>
+                
+                <h4>What We're Looking For</h4>
+                <ul>
+                    <li>Strong communication and organization skills with a bias for action</li>
+                    <li>Curiosity about markets, customers, and data-backed storytelling</li>
+                    <li>Comfort with common productivity and marketing tools; willingness to learn quickly</li>
+                    <li>Ownership mindset, reliability on deadlines, and collaborative attitude</li>
+                </ul>
+                
+                <a href="mailto:careers@scalesage.in" class="apply-button">Apply Now →</a>
+            </div>
+
+            <div class="career-benefits">
+                <div class="benefit-item">
+                    <div class="benefit-icon">🚀</div>
+                    <h4>Real Projects</h4>
+                    <p>Ship features and improvements used by actual customers</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">👨‍🏫</div>
+                    <h4>Mentorship</h4>
+                    <p>Pair with seasoned professionals for guidance and career coaching</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">⚡</div>
+                    <h4>Modern Practices</h4>
+                    <p>Exposure to agile workflows, CI/CD, and code quality standards</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">🏠</div>
+                    <h4>Flexible Remote</h4>
+                    <p>Outcome-focused work environment with flexible hours</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">📜</div>
+                    <h4>Certificates</h4>
+                    <p>Appreciation and experience letters upon completion</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <div class="benefit-icon">💼</div>
+                    <h4>Job Assistance</h4>
+                    <p>High performers considered for permanent roles</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: var(--card-bg); border: 1px solid rgba(57, 255, 20, 0.3); border-radius: 10px;">
+                <h3 style="color: var(--neon-green); margin-bottom: 1rem;">Ready to Join ScaleSage?</h3>
+                <p style="color: var(--text-dim); margin-bottom: 1.5rem;">Send your updated resume and let's build the future together</p>
+                <a href="mailto:careers@scalesage.in" class="btn btn-primary">📩 careers@scalesage.in</a>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
         <h2 class="section-title">Let's Build Something Extraordinary</h2>
@@ -836,7 +1062,7 @@
     <!-- Footer -->
     <footer>
         <p>&copy; 2025 ScaleSage Solutions LLP. All rights reserved.</p>
-        <p style="margin-top: 1rem; color: var(--neon-green);">Innovation • Excellence • Partnership • Growth</p>
+        <p style="margin-top: 1rem; color: var(--neon-green); font-size: 1.1rem; letter-spacing: 2px;">Passion • Performance • Partnership • Purpose</p>
     </footer>
 
     <!-- AI Chatbot -->
@@ -969,6 +1195,8 @@
                 return "Our AI automation solutions can reduce manual effort by 80% through intelligent workflow automation, document processing, and decision-making systems. Let's discuss your automation needs!";
             } else if (message.includes('contact') || message.includes('call')) {
                 return "You can reach us at +91 8349517735 or email info@scalesage.in. Our team is available 24/7 to assist you!";
+            } else if (message.includes('career') || message.includes('job') || message.includes('internship')) {
+                return "We're hiring! Check out our Software Engineer and Sales & Marketing internship positions. Send your resume to careers@scalesage.in to join our team!";
             } else if (message.includes('hello') || message.includes('hi')) {
                 return "Hello! Welcome to ScaleSage. How can I assist you with your IT transformation journey today?";
             } else if (message.includes('thank')) {
