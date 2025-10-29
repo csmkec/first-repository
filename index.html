@@ -403,11 +403,255 @@
         }
 
         /* Responsive */
+        /* AI Chatbot */
+        .chatbot-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 0 30px rgba(57, 255, 20, 0.6);
+            transition: all 0.3s;
+            z-index: 1000;
+            border: none;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 30px rgba(57, 255, 20, 0.6); }
+            50% { transform: scale(1.05); box-shadow: 0 0 50px rgba(57, 255, 20, 0.8); }
+        }
+
+        .chatbot-button:hover {
+            transform: scale(1.1);
+        }
+
+        .chatbot-button span {
+            font-size: 1.8rem;
+        }
+
+        .chatbot-container {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 380px;
+            height: 550px;
+            background: var(--card-bg);
+            border: 2px solid var(--neon-green);
+            border-radius: 15px;
+            box-shadow: 0 0 40px rgba(57, 255, 20, 0.4);
+            display: none;
+            flex-direction: column;
+            z-index: 999;
+            backdrop-filter: blur(10px);
+            overflow: hidden;
+        }
+
+        .chatbot-container.active {
+            display: flex;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, var(--neon-green), #00ff88);
+            color: var(--dark-bg);
+            padding: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 13px 13px 0 0;
+        }
+
+        .chatbot-header h3 {
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .close-chat {
+            background: none;
+            border: none;
+            color: var(--dark-bg);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .close-chat:hover {
+            transform: rotate(90deg);
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .chatbot-messages::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .chatbot-messages::-webkit-scrollbar-track {
+            background: rgba(57, 255, 20, 0.1);
+        }
+
+        .chatbot-messages::-webkit-scrollbar-thumb {
+            background: var(--neon-green);
+            border-radius: 3px;
+        }
+
+        .message {
+            max-width: 75%;
+            padding: 0.8rem 1rem;
+            border-radius: 10px;
+            animation: messageSlide 0.3s ease-out;
+        }
+
+        @keyframes messageSlide {
+            from { transform: translateY(10px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .message.bot {
+            background: rgba(57, 255, 20, 0.2);
+            border: 1px solid rgba(57, 255, 20, 0.4);
+            align-self: flex-start;
+            color: var(--text-light);
+        }
+
+        .message.user {
+            background: var(--neon-green);
+            color: var(--dark-bg);
+            align-self: flex-end;
+            margin-left: auto;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 5px;
+            padding: 0.8rem 1rem;
+            background: rgba(57, 255, 20, 0.2);
+            border: 1px solid rgba(57, 255, 20, 0.4);
+            border-radius: 10px;
+            width: fit-content;
+        }
+
+        .typing-indicator span {
+            width: 8px;
+            height: 8px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
+        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        .chatbot-input {
+            display: flex;
+            padding: 1rem;
+            background: rgba(15, 20, 40, 0.9);
+            border-top: 1px solid rgba(57, 255, 20, 0.3);
+            gap: 0.8rem;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 0.8rem;
+            background: rgba(57, 255, 20, 0.1);
+            border: 1px solid rgba(57, 255, 20, 0.3);
+            border-radius: 8px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .chatbot-input input:focus {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 10px rgba(57, 255, 20, 0.3);
+        }
+
+        .chatbot-input input::placeholder {
+            color: var(--text-dim);
+        }
+
+        .send-button {
+            background: var(--neon-green);
+            color: var(--dark-bg);
+            border: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .send-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.5);
+        }
+
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .quick-reply {
+            background: rgba(57, 255, 20, 0.1);
+            border: 1px solid rgba(57, 255, 20, 0.3);
+            color: var(--neon-green);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: all 0.3s;
+        }
+
+        .quick-reply:hover {
+            background: var(--neon-green);
+            color: var(--dark-bg);
+        }
+
         @media (max-width: 768px) {
             .hero-content h1 { font-size: 2.5rem; }
             .section-title { font-size: 2rem; }
             .nav-links { display: none; }
             .services-grid { grid-template-columns: 1fr; }
+            
+            .chatbot-container {
+                width: calc(100% - 20px);
+                right: 10px;
+                bottom: 90px;
+                height: 500px;
+            }
+            
+            .chatbot-button {
+                bottom: 20px;
+                right: 20px;
+            }
         }
     </style>
 </head>
@@ -595,6 +839,38 @@
         <p style="margin-top: 1rem; color: var(--neon-green);">Innovation • Excellence • Partnership • Growth</p>
     </footer>
 
+    <!-- AI Chatbot -->
+    <button class="chatbot-button" id="chatbotToggle">
+        <span>🤖</span>
+    </button>
+
+    <div class="chatbot-container" id="chatbotContainer">
+        <div class="chatbot-header">
+            <h3>
+                <span>🤖</span>
+                AI Assistant
+            </h3>
+            <button class="close-chat" id="closeChat">✕</button>
+        </div>
+        
+        <div class="chatbot-messages" id="chatMessages">
+            <div class="message bot">
+                Hi! I'm ScaleSage AI Assistant. How can I help you today?
+            </div>
+            <div class="quick-replies">
+                <button class="quick-reply" data-message="Tell me about your services">Services</button>
+                <button class="quick-reply" data-message="What are your pricing options?">Pricing</button>
+                <button class="quick-reply" data-message="I need cloud migration help">Cloud Migration</button>
+                <button class="quick-reply" data-message="Tell me about AI automation">AI Automation</button>
+            </div>
+        </div>
+        
+        <div class="chatbot-input">
+            <input type="text" id="chatInput" placeholder="Type your message...">
+            <button class="send-button" id="sendMessage">Send</button>
+        </div>
+    </div>
+
     <!-- Floating Particles -->
     <script>
         // Create floating particles
@@ -624,6 +900,95 @@
             const parallax = document.querySelector('.bg-animation');
             if (parallax) {
                 parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+
+        // Chatbot functionality
+        const chatbotToggle = document.getElementById('chatbotToggle');
+        const chatbotContainer = document.getElementById('chatbotContainer');
+        const closeChat = document.getElementById('closeChat');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendMessage = document.getElementById('sendMessage');
+
+        // Toggle chatbot
+        chatbotToggle.addEventListener('click', () => {
+            chatbotContainer.classList.toggle('active');
+        });
+
+        closeChat.addEventListener('click', () => {
+            chatbotContainer.classList.remove('active');
+        });
+
+        // Quick replies
+        document.querySelectorAll('.quick-reply').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const message = btn.getAttribute('data-message');
+                sendUserMessage(message);
+            });
+        });
+
+        // Send message function
+        function sendUserMessage(text) {
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user';
+            userMessage.textContent = text;
+            chatMessages.appendChild(userMessage);
+            
+            chatInput.value = '';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Show typing indicator
+            const typingIndicator = document.createElement('div');
+            typingIndicator.className = 'typing-indicator';
+            typingIndicator.innerHTML = '<span></span><span></span><span></span>';
+            chatMessages.appendChild(typingIndicator);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Simulate bot response
+            setTimeout(() => {
+                typingIndicator.remove();
+                const botResponse = getBotResponse(text.toLowerCase());
+                const botMessage = document.createElement('div');
+                botMessage.className = 'message bot';
+                botMessage.textContent = botResponse;
+                chatMessages.appendChild(botMessage);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1500);
+        }
+
+        // Bot response logic
+        function getBotResponse(message) {
+            if (message.includes('service')) {
+                return "We offer AI-Powered Automation, Cloud Migration, Custom Development, Customer Support Outsourcing, and IT Staff Augmentation. Which service interests you?";
+            } else if (message.includes('pricing') || message.includes('cost')) {
+                return "We offer up to 70% cost savings on development and IT outsourcing services. Contact us at +91 8349517735 for a custom quote tailored to your needs.";
+            } else if (message.includes('cloud')) {
+                return "Our cloud migration services include AWS, Azure, and Google Cloud with zero downtime guarantee. We can reduce your infrastructure costs by up to 60%. Would you like to schedule a consultation?";
+            } else if (message.includes('ai') || message.includes('automation')) {
+                return "Our AI automation solutions can reduce manual effort by 80% through intelligent workflow automation, document processing, and decision-making systems. Let's discuss your automation needs!";
+            } else if (message.includes('contact') || message.includes('call')) {
+                return "You can reach us at +91 8349517735 or email info@scalesage.in. Our team is available 24/7 to assist you!";
+            } else if (message.includes('hello') || message.includes('hi')) {
+                return "Hello! Welcome to ScaleSage. How can I assist you with your IT transformation journey today?";
+            } else if (message.includes('thank')) {
+                return "You're welcome! Feel free to reach out anytime. We're here to help your business succeed! 🚀";
+            } else {
+                return "That's a great question! For detailed information, please contact our team at +91 8349517735 or info@scalesage.in. We'd love to discuss your specific needs!";
+            }
+        }
+
+        // Send on Enter key
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && chatInput.value.trim()) {
+                sendUserMessage(chatInput.value.trim());
+            }
+        });
+
+        // Send on button click
+        sendMessage.addEventListener('click', () => {
+            if (chatInput.value.trim()) {
+                sendUserMessage(chatInput.value.trim());
             }
         });
     </script>
