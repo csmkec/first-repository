@@ -1,125 +1,631 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>ScaleSage - Empowering Digital Transformation</title>
-  <style>
-    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f7f8fa; margin: 0; color: #222; }
-    .nav-bar { background: #183153; color: #fff; padding: 0.5em 0; position: sticky; top: 0; z-index: 10;}
-    .nav-bar ul { list-style: none; margin: 0; padding: 0 1em; display: flex; justify-content: right;}
-    .nav-bar li { margin: 0 1em;}
-    .nav-bar a { color: #fff; text-decoration: none; font-weight: 500; padding: 0.5em 1em;}
-    .cta-btn { background: #0072e3; border-radius: 4px; font-weight: bold; }
-    .hero-banner { display: flex; align-items: center; gap: 2em; padding: 2em 4vw; background: #e8eef7;}
-    .hero-text h1 { margin-bottom: 0.2em; font-size: 2.4em;}
-    .hero-text p { margin: 0.2em 0 1em 0;}
-    .service-highlights { background: #fff; padding: 2em 4vw;}
-    .service-highlights ul { display: flex; flex-wrap: wrap; gap: 2em; list-style: none; margin:0; padding:0;}
-    .service-highlights li { display: flex; align-items: center; font-size: 1.1em;}
-    .service-highlights .icon { font-size: 1.6em; margin-right: 0.6em;}
-    .case-study-carousel { background: #f4f4f8; padding: 2em 4vw; border-radius: 8px; margin: 2em 0;}
-    .case-slide { display: flex; align-items: center; gap: 2em; }
-    .case-slide img { width: 140px; border-radius: 6px; }
-    .metric { background: #0072e3; color: #fff; border-radius: 3px; padding: 0.15em 0.8em; font-size: 1em; margin-top: 0.4em;}
-    .feedback-widget { background: #fff; margin: 2em 4vw; padding: 1em 2vw; border-radius: 8px; }
-    .feedback-widget form { display: flex; gap: 1.2em; margin-top: 0.5em;}
-    .feedback-widget label { font-size: 1.2em; }
-    @media (max-width: 800px) {
-      .hero-banner, .case-slide { flex-direction: column; gap: 1em;}
-      .service-highlights ul { flex-direction: column;}
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ScaleSage - Next-Gen IT Solutions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-green: #39ff14;
+            --dark-bg: #0a0e27;
+            --darker-bg: #060913;
+            --card-bg: rgba(15, 20, 40, 0.8);
+            --text-light: #e0e0e0;
+            --text-dim: #8a8a8a;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 20% 50%, rgba(57, 255, 20, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(57, 255, 20, 0.05) 0%, transparent 50%);
+        }
+
+        .grid-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(57, 255, 20, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(57, 255, 20, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(6, 9, 19, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(57, 255, 20, 0.2);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green);
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-green);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-green);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 5%;
+            position: relative;
+            margin-top: 60px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--neon-green) 0%, #00ff88 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { filter: drop-shadow(0 0 20px rgba(57, 255, 20, 0.5)); }
+            to { filter: drop-shadow(0 0 40px rgba(57, 255, 20, 0.8)); }
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            color: var(--text-dim);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background: var(--neon-green);
+            color: var(--dark-bg);
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 40px rgba(57, 255, 20, 0.6);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--neon-green);
+            border: 2px solid var(--neon-green);
+        }
+
+        .btn-secondary:hover {
+            background: var(--neon-green);
+            color: var(--dark-bg);
+        }
+
+        /* Services Section */
+        .section {
+            padding: 6rem 5%;
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--neon-green);
+            text-shadow: 0 0 10px rgba(57, 255, 20, 0.5);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-dim);
+            margin-bottom: 4rem;
+            font-size: 1.2rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(57, 255, 20, 0.2);
+            border-radius: 10px;
+            padding: 2rem;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(57, 255, 20, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-green);
+            box-shadow: 0 10px 40px rgba(57, 255, 20, 0.3);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--neon-green);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--neon-green);
+        }
+
+        .service-card p {
+            color: var(--text-dim);
+            line-height: 1.8;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: rgba(15, 20, 40, 0.5);
+            padding: 4rem 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item h2 {
+            font-size: 3rem;
+            color: var(--neon-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-item p {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+        }
+
+        /* Features Section */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--card-bg);
+            border-radius: 10px;
+            border: 1px solid rgba(57, 255, 20, 0.1);
+            transition: all 0.3s;
+        }
+
+        .feature-item:hover {
+            border-color: var(--neon-green);
+            transform: scale(1.05);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h3 {
+            color: var(--neon-green);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .tech-item {
+            background: var(--card-bg);
+            padding: 1.5rem 2rem;
+            border-radius: 10px;
+            border: 1px solid rgba(57, 255, 20, 0.2);
+            transition: all 0.3s;
+            font-size: 1.2rem;
+        }
+
+        .tech-item:hover {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 20px rgba(57, 255, 20, 0.3);
+            transform: translateY(-5px);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, rgba(57, 255, 20, 0.05) 0%, transparent 100%);
+            text-align: center;
+            padding: 6rem 5%;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-icon {
+            color: var(--neon-green);
+            font-size: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--darker-bg);
+            padding: 3rem 5%;
+            text-align: center;
+            border-top: 1px solid rgba(57, 255, 20, 0.2);
+        }
+
+        footer p {
+            color: var(--text-dim);
+        }
+
+        /* Floating particles */
+        .particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: var(--neon-green);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 15s infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-100vh) translateX(50px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .section-title { font-size: 2rem; }
+            .nav-links { display: none; }
+            .services-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-  <!-- Navigation Bar -->
-  <nav class="nav-bar" role="navigation" aria-label="Main menu">
-    <ul>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#case-studies">Case Studies</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#careers">Careers</a></li>
-      <li><a href="#contact" class="cta-btn">Contact Us</a></li>
-    </ul>
-  </nav>
+    <div class="bg-animation"></div>
+    <div class="grid-overlay"></div>
 
-  <!-- Hero Banner -->
-  <section class="hero-banner">
-    <div class="hero-text">
-      <h1>Empowering Digital Transformation</h1>
-      <p>AI-powered solutions for scaling your business seamlessly. Reliable, secure, and affordable IT transformation—customized for you.</p>
-      <a href="#contact" class="cta-btn">Get Started</a>
-    </div>
-    <img src="https://cdn.pixabay.com/photo/2015/08/05/10/54/network-875137_1280.jpg" alt="Digital transformation graphic" style="width:290px; border-radius:6px;">
-  </section>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">SCALESAGE</div>
+        <ul class="nav-links">
+            <li><a href="#services">Services</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#tech">Technology</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
 
-  <!-- Service Highlights -->
-  <section class="service-highlights" id="services">
-    <ul>
-      <li><span class="icon">🚀</span>AI-Powered Automation</li>
-      <li><span class="icon">💸</span>Up to 70% Cost Savings</li>
-      <li><span class="icon">🔒</span>Enterprise-Grade Security</li>
-      <li><span class="icon">📱</span>Mobile & Responsive Designs</li>
-      <li><span class="icon">🤝</span>Trusted IT Partnership</li>
-    </ul>
-  </section>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Empowering Digital Transformation</h1>
+            <p>Next-generation IT solutions that scale with your ambitions. From AI-powered automation to cloud-native architectures, we transform businesses through innovation and excellence.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Get Started</a>
+                <a href="#services" class="btn btn-secondary">Explore Services</a>
+            </div>
+        </div>
+    </section>
 
-  <!-- Case Study Carousel -->
-  <section class="case-study-carousel" id="case-studies">
-    <h2>Our Impact</h2>
-    <div class="case-slide" id="case-slide">
-      <img id="case-img" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c" alt="Case Study">
-      <div>
-        <h3 id="case-title">Cloud Migration</h3>
-        <p id="case-snippet">Seamless migration with zero downtime; improved system reliability.</p>
-        <div class="metric" id="case-metric">40% cost reduction</div>
-        <button onclick="nextCase()">Next</button>
-      </div>
-    </div>
-  </section>
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="stat-item">
+            <h2>70%</h2>
+            <p>Cost Savings</p>
+        </div>
+        <div class="stat-item">
+            <h2>24/7</h2>
+            <p>Support Available</p>
+        </div>
+        <div class="stat-item">
+            <h2>95%</h2>
+            <p>Customer Satisfaction</p>
+        </div>
+        <div class="stat-item">
+            <h2>18+</h2>
+            <p>Years Experience</p>
+        </div>
+    </section>
 
-  <!-- Feedback Widget -->
-  <section class="feedback-widget" aria-label="User feedback form">
-    <h3>How was your experience?</h3>
-    <form id="feedback-form">
-      <label><input type="radio" name="rating" value="1" aria-label="1 star">1</label>
-      <label><input type="radio" name="rating" value="2" aria-label="2 stars">2</label>
-      <label><input type="radio" name="rating" value="3" aria-label="3 stars">3</label>
-      <label><input type="radio" name="rating" value="4" aria-label="4 stars">4</label>
-      <label><input type="radio" name="rating" value="5" aria-label="5 stars">5</label>
-    </form>
-    <div id="thanks-message" style="display:none;">Thank you for your feedback!</div>
-  </section>
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-subtitle">Comprehensive IT solutions tailored to your business needs</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🤖</div>
+                <h3>AI-Powered Automation</h3>
+                <p>Leverage AI and ML to automate workflows, optimize processes, and reduce manual effort by 80%. Transform operations with intelligent automation solutions.</p>
+            </div>
 
-  <script>
-    // Demo: Case Study Carousel
-    const caseStudies = [
-      {
-        title: "Cloud Migration",
-        metric: "40% cost reduction",
-        snippet: "Seamless migration with zero downtime; improved system reliability.",
-        img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c"
-      },
-      {
-        title: "Custom App Development",
-        metric: "Delivery ahead of schedule",
-        snippet: "Modern frameworks; agile practices for fast turnaround.",
-        img: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308"
-      }
-    ];
-    let caseIndex = 0;
-    function nextCase() {
-      caseIndex = (caseIndex + 1) % caseStudies.length;
-      document.getElementById('case-img').src = caseStudies[caseIndex].img;
-      document.getElementById('case-title').innerText = caseStudies[caseIndex].title;
-      document.getElementById('case-snippet').innerText = caseStudies[caseIndex].snippet;
-      document.getElementById('case-metric').innerText = caseStudies[caseIndex].metric;
-    }
+            <div class="service-card">
+                <div class="service-icon">☁️</div>
+                <h3>Cloud Migration Services</h3>
+                <p>End-to-end AWS, Azure, and Google Cloud migration with zero downtime guarantee. Save up to 60% on infrastructure costs with expert cloud transformation.</p>
+            </div>
 
-    // Demo: Feedback Widget
-    document.getElementById('feedback-form').addEventListener('change', function(event) {
-      document.getElementById('thanks-message').style.display = 'block';
-    });
-  </script>
+            <div class="service-card">
+                <div class="service-icon">💻</div>
+                <h3>Custom Development</h3>
+                <p>Low-cost application and website development using modern frameworks. Build scalable, custom software solutions at 70% lower costs.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🎧</div>
+                <h3>Customer Support Outsourcing</h3>
+                <p>24/7 multilingual technical support with 90% cost savings. Industry-leading ticketing systems and proactive monitoring for exceptional service.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">🚀</div>
+                <h3>IT Staff Augmentation</h3>
+                <p>Rapid access to skilled IT professionals to bridge talent gaps and accelerate project delivery without lengthy hiring cycles.</p>
+            </div>
+
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>IT Project Management</h3>
+                <p>Certified project managers ensuring timely, on-budget delivery using proven agile methodologies and collaborative tools.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" id="features">
+        <h2 class="section-title">Why Choose ScaleSage?</h2>
+        <p class="section-subtitle">Leading IT outsourcing company in India</p>
+        
+        <div class="features-grid">
+            <div class="feature-item">
+                <div class="feature-icon">🔒</div>
+                <h3>Security First</h3>
+                <p>Enterprise-grade security protecting your data and operations</p>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">⚡</div>
+                <h3>Fast Delivery</h3>
+                <p>Rapid deployment with zero downtime and seamless transitions</p>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">👥</div>
+                <h3>Expert Team</h3>
+                <p>Certified professionals with cutting-edge technology expertise</p>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">💰</div>
+                <h3>Cost Effective</h3>
+                <p>Up to 70% savings on development and outsourcing services</p>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">📈</div>
+                <h3>Scalable Solutions</h3>
+                <p>Solutions that grow seamlessly with your business needs</p>
+            </div>
+
+            <div class="feature-item">
+                <div class="feature-icon">🌍</div>
+                <h3>Global Reach</h3>
+                <p>Serving clients worldwide with local expertise</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack -->
+    <section class="section" id="tech">
+        <h2 class="section-title">Our Technology Stack</h2>
+        <p class="section-subtitle">Cutting-edge technologies powering innovative solutions</p>
+        
+        <div class="tech-stack">
+            <div class="tech-item">AWS</div>
+            <div class="tech-item">Azure</div>
+            <div class="tech-item">Google Cloud</div>
+            <div class="tech-item">React</div>
+            <div class="tech-item">Node.js</div>
+            <div class="tech-item">Python</div>
+            <div class="tech-item">Docker</div>
+            <div class="tech-item">Kubernetes</div>
+            <div class="tech-item">TensorFlow</div>
+            <div class="tech-item">MongoDB</div>
+            <div class="tech-item">PostgreSQL</div>
+            <div class="tech-item">CI/CD</div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <h2 class="section-title">Let's Build Something Extraordinary</h2>
+        <p class="section-subtitle">Ready to transform your business? Get in touch today.</p>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <span class="contact-icon">📞</span>
+                <span>+91 8349517735</span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-icon">✉️</span>
+                <span>info@scalesage.in</span>
+            </div>
+        </div>
+
+        <div class="cta-buttons" style="margin-top: 3rem;">
+            <a href="mailto:info@scalesage.in" class="btn btn-primary">Contact Us Now</a>
+            <a href="mailto:careers@scalesage.in" class="btn btn-secondary">Join Our Team</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 ScaleSage Solutions LLP. All rights reserved.</p>
+        <p style="margin-top: 1rem; color: var(--neon-green);">Innovation • Excellence • Partnership • Growth</p>
+    </footer>
+
+    <!-- Floating Particles -->
+    <script>
+        // Create floating particles
+        for (let i = 0; i < 20; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            document.body.appendChild(particle);
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Parallax effect on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.bg-animation');
+            if (parallax) {
+                parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+            }
+        });
+    </script>
 </body>
 </html>
