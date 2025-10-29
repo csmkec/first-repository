@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ScaleSage - Empowering Digital Transformation</title>
+  <style>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f7f8fa; margin: 0; color: #222; }
+    .nav-bar { background: #183153; color: #fff; padding: 0.5em 0; position: sticky; top: 0; z-index: 10;}
+    .nav-bar ul { list-style: none; margin: 0; padding: 0 1em; display: flex; justify-content: right;}
+    .nav-bar li { margin: 0 1em;}
+    .nav-bar a { color: #fff; text-decoration: none; font-weight: 500; padding: 0.5em 1em;}
+    .cta-btn { background: #0072e3; border-radius: 4px; font-weight: bold; }
+    .hero-banner { display: flex; align-items: center; gap: 2em; padding: 2em 4vw; background: #e8eef7;}
+    .hero-text h1 { margin-bottom: 0.2em; font-size: 2.4em;}
+    .hero-text p { margin: 0.2em 0 1em 0;}
+    .service-highlights { background: #fff; padding: 2em 4vw;}
+    .service-highlights ul { display: flex; flex-wrap: wrap; gap: 2em; list-style: none; margin:0; padding:0;}
+    .service-highlights li { display: flex; align-items: center; font-size: 1.1em;}
+    .service-highlights .icon { font-size: 1.6em; margin-right: 0.6em;}
+    .case-study-carousel { background: #f4f4f8; padding: 2em 4vw; border-radius: 8px; margin: 2em 0;}
+    .case-slide { display: flex; align-items: center; gap: 2em; }
+    .case-slide img { width: 140px; border-radius: 6px; }
+    .metric { background: #0072e3; color: #fff; border-radius: 3px; padding: 0.15em 0.8em; font-size: 1em; margin-top: 0.4em;}
+    .feedback-widget { background: #fff; margin: 2em 4vw; padding: 1em 2vw; border-radius: 8px; }
+    .feedback-widget form { display: flex; gap: 1.2em; margin-top: 0.5em;}
+    .feedback-widget label { font-size: 1.2em; }
+    @media (max-width: 800px) {
+      .hero-banner, .case-slide { flex-direction: column; gap: 1em;}
+      .service-highlights ul { flex-direction: column;}
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="nav-bar" role="navigation" aria-label="Main menu">
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#case-studies">Case Studies</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#careers">Careers</a></li>
+      <li><a href="#contact" class="cta-btn">Contact Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero Banner -->
+  <section class="hero-banner">
+    <div class="hero-text">
+      <h1>Empowering Digital Transformation</h1>
+      <p>AI-powered solutions for scaling your business seamlessly. Reliable, secure, and affordable IT transformation—customized for you.</p>
+      <a href="#contact" class="cta-btn">Get Started</a>
+    </div>
+    <img src="https://cdn.pixabay.com/photo/2015/08/05/10/54/network-875137_1280.jpg" alt="Digital transformation graphic" style="width:290px; border-radius:6px;">
+  </section>
+
+  <!-- Service Highlights -->
+  <section class="service-highlights" id="services">
+    <ul>
+      <li><span class="icon">🚀</span>AI-Powered Automation</li>
+      <li><span class="icon">💸</span>Up to 70% Cost Savings</li>
+      <li><span class="icon">🔒</span>Enterprise-Grade Security</li>
+      <li><span class="icon">📱</span>Mobile & Responsive Designs</li>
+      <li><span class="icon">🤝</span>Trusted IT Partnership</li>
+    </ul>
+  </section>
+
+  <!-- Case Study Carousel -->
+  <section class="case-study-carousel" id="case-studies">
+    <h2>Our Impact</h2>
+    <div class="case-slide" id="case-slide">
+      <img id="case-img" src="https://images.unsplash.com/photo-1519389950473-47ba0277781c" alt="Case Study">
+      <div>
+        <h3 id="case-title">Cloud Migration</h3>
+        <p id="case-snippet">Seamless migration with zero downtime; improved system reliability.</p>
+        <div class="metric" id="case-metric">40% cost reduction</div>
+        <button onclick="nextCase()">Next</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feedback Widget -->
+  <section class="feedback-widget" aria-label="User feedback form">
+    <h3>How was your experience?</h3>
+    <form id="feedback-form">
+      <label><input type="radio" name="rating" value="1" aria-label="1 star">1</label>
+      <label><input type="radio" name="rating" value="2" aria-label="2 stars">2</label>
+      <label><input type="radio" name="rating" value="3" aria-label="3 stars">3</label>
+      <label><input type="radio" name="rating" value="4" aria-label="4 stars">4</label>
+      <label><input type="radio" name="rating" value="5" aria-label="5 stars">5</label>
+    </form>
+    <div id="thanks-message" style="display:none;">Thank you for your feedback!</div>
+  </section>
+
+  <script>
+    // Demo: Case Study Carousel
+    const caseStudies = [
+      {
+        title: "Cloud Migration",
+        metric: "40% cost reduction",
+        snippet: "Seamless migration with zero downtime; improved system reliability.",
+        img: "https://images.unsplash.com/photo-1519389950473-47ba0277781c"
+      },
+      {
+        title: "Custom App Development",
+        metric: "Delivery ahead of schedule",
+        snippet: "Modern frameworks; agile practices for fast turnaround.",
+        img: "https://images.unsplash.com/photo-1519125323398-675f0ddb6308"
+      }
+    ];
+    let caseIndex = 0;
+    function nextCase() {
+      caseIndex = (caseIndex + 1) % caseStudies.length;
+      document.getElementById('case-img').src = caseStudies[caseIndex].img;
+      document.getElementById('case-title').innerText = caseStudies[caseIndex].title;
+      document.getElementById('case-snippet').innerText = caseStudies[caseIndex].snippet;
+      document.getElementById('case-metric').innerText = caseStudies[caseIndex].metric;
+    }
+
+    // Demo: Feedback Widget
+    document.getElementById('feedback-form').addEventListener('change', function(event) {
+      document.getElementById('thanks-message').style.display = 'block';
+    });
+  </script>
+</body>
+</html>
